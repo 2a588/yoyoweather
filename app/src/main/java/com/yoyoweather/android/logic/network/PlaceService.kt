@@ -1,8 +1,11 @@
 package com.yoyoweather.android.logic.network
 
-import androidx.room.Query
+
 import com.yoyoweather.android.YoyoweatherApplication
 import com.yoyoweather.android.logic.model.PlaceRespons
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface PlaceService{
 

@@ -1,10 +1,16 @@
 package com.yoyoweather.android.logic
 
 import androidx.lifecycle.liveData
+import okhttp3.Dispatcher
+import androidx.lifecycle.liveData
+//import com.yoyoweather.android.logic.dao.PlaceDao
 import com.yoyoweather.android.logic.model.Place
+//import com.yoyoweather.android.logic.model.Weather
 import com.yoyoweather.android.logic.network.YoyoweatherNetwork
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Dispatcher
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlin.coroutines.CoroutineContext
 
 object Respository{
 
