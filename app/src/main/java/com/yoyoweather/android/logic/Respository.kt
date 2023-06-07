@@ -10,6 +10,9 @@ import com.yoyoweather.android.logic.network.YoyoweatherNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import java.lang.Exception
+import java.lang.RuntimeException
+import javax.xml.transform.Result
 import kotlin.coroutines.CoroutineContext
 
 object Respository{
@@ -28,4 +31,34 @@ object Respository{
         }
         emit(result)
     }
+
+    fun searchLocation(location: String) = fire{
+        //网路请求获取响应数据
+        var locationResponse = YoyoWeatherNetwork.searchLocation(location)
+        if(lcationtionResponse.code == "200"){
+            var locations = locationResponse.location
+            Result.success(locations)
+        }else{
+            Result.failure(RuntimeException("respon status is ${locationResponse.code}"))
+        }
+    }
+
+
+
+    private fun <T> fire(block : suspend ()-> Result<T>) = liveData(Dispatchers.IO){
+        val result = try{
+            block()
+        } catch (e :Exception){
+            Result.failure(e)
+        }
+        emit(result)
+    }
+
+    fun saveLocation(location: LocationResponse.Location) = LocationDao.saveLocation(location)
+
+    fun getSaveLocation() = LocationDao.getSavedLocation()
+
+    fun isLocationSaved = LocationDao.isLocationSaved()
+
+
 }
