@@ -18,7 +18,11 @@ interface WeatherSerive {
     fun getNowWeather(@Query("location") locationID: String) : Call<NowResponse>
 
 
+    @GET("v7/weather/now?key=${SunnyWeatherApplication.TOKEN}")
+    fun getDailyWeather(@Query("location") locationID: String): Call<DailyResponse>
 
 
+    @GET("v7/indices/1d?type=${SunnyWeatherApplication.INDICES_TYPE}&key=${SunnyWeatherApplication.TOKEN}")
+    fun getIndicesWeather(@Query("location") locationID: String): Call<IndicesResponse>
 
 }
