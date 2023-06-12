@@ -43,6 +43,12 @@ object Respository{
         }
     }
 
+    fun refreshWeather(locationID: String) = fire{
+        var deferredNow = async {
+
+        }
+    }
+
 
 
     private fun <T> fire(block : suspend ()-> Result<T>) = liveData(Dispatchers.IO){
@@ -53,6 +59,8 @@ object Respository{
         }
         emit(result)
     }
+
+
 
     fun saveLocation(location: LocationResponse.Location) = LocationDao.saveLocation(location)
 

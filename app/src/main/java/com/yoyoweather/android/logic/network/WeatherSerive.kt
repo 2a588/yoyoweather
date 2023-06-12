@@ -14,4 +14,11 @@ interface WeatherSerive {
     fun getDailyWeather(@Path("lng") lng:String,@Path("lat") lat :String):
             Call<DailyResponse>
 
+    @GET("v7/weather/now?key=${SunnyWeatherApplication.TOKEN}")
+    fun getNowWeather(@Query("location") locationID: String) : Call<NowResponse>
+
+
+
+
+
 }
